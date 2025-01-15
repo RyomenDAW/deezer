@@ -1,7 +1,6 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Menu from "./components/menu.vue";
-
 </script>
 
 <template>
@@ -9,7 +8,7 @@ import Menu from "./components/menu.vue";
     <!-- Header -->
     <header class="bg-primary text-white py-3">
       <div class="container text-center">
-        <h1>Deezer Music Client</h1>
+        <h1>Deezer 2º DAW Israel Hernandez</h1>
       </div>
     </header>
 
@@ -23,7 +22,7 @@ import Menu from "./components/menu.vue";
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
-      <p>&copy; 2024 Deezer Music Client. Todos los derechos reservados.</p>
+      <p>&copy; 2025 2º DAW Deezer Music Client. All Rights Deserved, Copyright..</p>
     </footer>
   </div>
 </template>
@@ -50,6 +49,11 @@ li {
       font-weight: bold;
     }
   }
+  .router-link-active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 
 
 </style>
