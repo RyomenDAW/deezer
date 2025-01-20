@@ -20,6 +20,7 @@ const routes = [
     name: 'Buscador',
     component: SearchView,
   },
+
 ];
 
 const router = createRouter({

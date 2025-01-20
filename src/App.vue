@@ -1,6 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Menu from "./components/menu.vue";
+import Player from "./components/reproductor.vue"
 </script>
 
 <template>
@@ -19,6 +20,11 @@ import Menu from "./components/menu.vue";
     <main class="container my-4">
       <router-view />
     </main>
+
+     <!-- Menu -->
+     <Menu />
+
+
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
