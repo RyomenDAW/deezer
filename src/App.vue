@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import Menu from "./components/menu.vue";
 import Player from "./components/reproductor.vue"
+import SongCarousel from "./components/SongCarousel.vue";
 </script>
 
 <template>
@@ -19,10 +20,13 @@ import Player from "./components/reproductor.vue"
     <!-- Main Content -->
     <main class="container my-4">
       <router-view />
+      <section>
+        <SongCarousel />
+
+      </section>
     </main>
 
-     <!-- Menu -->
-     <Menu />
+
 
 
 
@@ -39,27 +43,27 @@ import Player from "./components/reproductor.vue"
 
 
 <style lang="scss">
-nav{
+nav {
   border: 1px solid gray;
 }
+
 $hover-bg-color: #007bff;
 $hover-text-color: #ffffff;
-li {
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
 
-    &:hover {
-      background-color: $hover-bg-color;
-      color: $hover-text-color;
-      font-weight: bold;
-    }
+li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+
+  &:hover {
+    background-color: $hover-bg-color;
+    color: $hover-text-color;
+    font-weight: bold;
   }
-  .router-link-active {
+}
+
+.router-link-active {
   font-weight: bold;
   text-decoration: underline;
 }
-
-
-
 </style>
