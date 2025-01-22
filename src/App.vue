@@ -21,10 +21,9 @@ import SongCarousel from "./components/SongCarousel.vue";
     <main class="container my-4">
       <router-view />
       <section>
-        <SongCarousel />
 
       </section>
-    </main>
+    </main>    
 
 
 

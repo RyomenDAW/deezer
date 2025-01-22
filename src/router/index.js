@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue';
 import PlaylistsView from '../views/PlaylistsView.vue';
 import SearchView from '../views/SearchView.vue';
-
+import SongCarousel from '../components/SongCarousel.vue'; // Importa SongCarousel
 const routes = [
   {
     path: '/',
@@ -21,6 +21,11 @@ const routes = [
     component: SearchView,
   },
 
+  {
+    path: '/carousel',
+    name: 'Carousel',
+    component: SongCarousel, // Ruta exclusiva para el carrusel
+  },
 ];
 
 const router = createRouter({
@@ -29,3 +34,4 @@ const router = createRouter({
 })
 
 export default router
+
