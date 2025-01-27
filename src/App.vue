@@ -8,7 +8,7 @@ import SongCarousel from "./components/SongCarousel.vue";
 <template>
   <div id="app">
     <!-- Header -->
-    <header class="bg-primary text-white py-3">
+    <header class="bg-dark bg-color text-white py-3">
       <div class="container text-center">
         <h1>Deezer 2º DAW Israel Hernandez</h1>
       </div>
@@ -46,7 +46,7 @@ nav {
   border: 1px solid gray;
 }
 
-$hover-bg-color: #007bff;
+$hover-bg-color: #113506;
 $hover-text-color: #ffffff;
 
 li {
