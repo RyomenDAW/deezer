@@ -7,9 +7,7 @@
   <PiniaComponent />
     <!-- Mostrar datos de la store directamente -->
     <div class="store-data">
-      <h3>Datos desde la Store:</h3>
-      <p>Email actual: {{ userEmail }}</p>
-      <p>Dominio del email: {{ emailDomain }}</p>
+
     </div>
       
   </template>

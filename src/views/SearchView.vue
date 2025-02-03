@@ -3,22 +3,28 @@
     <h1 class="text-3xl font-bold mb-4 text-center">Búsqueda de canciones en Deezer</h1>
     <!-- Componente hijo -->
     <SearchBar @results="handleResults" />
+    
     <!-- Lista de canciones -->
     <div class="mt-6 space-y-2">
       <div id="playlist" v-for="song in songs" :key="song.id"
         class="bg-white rounded-lg shadow-md p-4 flex items-center justify-between hover:shadow-lg transition-shadow duration-200">
-        <!-- Información de la canción en una línea -->
+        
+        <!-- Información de la canción -->
         <div class="row items-center truncate">
-          <!-- Aumenté el tamaño de la fuente de los textos de la canción -->
           <div class="col-3" id="titulo">{{ song.title }}</div>
           <div class="col-2" id="artista">{{ song.artist.name }}</div>
           <div class="col-2" id="tituloalbum">{{ song.album.title }}</div>
           <div class="col-2" id="duracion">{{ song.formattedDuration }}</div>
-          <div class="col-2"> <img :src="song.album.cover" :alt="`Carátula del álbum ${song.album.title}`"
-              class="w-16 h-16 rounded-lg object-cover ml-4 flex-shrink-0" /></div>
-
+          <div class="col-2">
+            <img :src="song.album.cover" :alt="`Carátula del álbum ${song.album.title}`"
+              class="w-16 h-16 rounded-lg object-cover ml-4 flex-shrink-0" />
+          </div>
         </div>
-        <!-- Carátula del álbum, fija a la derecha !!!-->
+
+        <!-- Botón de favorito -->
+        <button class="btn btn-outline-success favorite-btn" @click="toggleFavorite(song)">
+          <i :class="isFavorite(song.id) ? 'bi bi-heart-fill' : 'bi bi-heart'"></i>
+        </button>
       </div>
     </div>
   </div>
@@ -26,9 +32,11 @@
 
 <script setup>
 import { ref } from "vue";
-import SearchBar from "../components/SearchBar.vue"; // Importa el componente hijo
+import { useFavoritesStore } from "../stores/favorites";
+import SearchBar from "../components/SearchBar.vue";
 
 const songs = ref([]); // Estado para almacenar la lista de canciones
+const favoritesStore = useFavoritesStore(); // Accedemos a la store de favoritos
 
 // Función para formatear la duración en minutos y segundos
 const formatDuration = (duration) => {
@@ -39,11 +47,24 @@ const formatDuration = (duration) => {
 
 // Maneja los resultados emitidos por el componente hijo
 const handleResults = (data) => {
-  // Añade una propiedad `formattedDuration` a cada canción
   songs.value = data.map((song) => ({
     ...song,
     formattedDuration: formatDuration(song.duration),
   }));
+};
+
+// Agregar o eliminar de favoritos
+const toggleFavorite = (song) => {
+  if (isFavorite(song.id)) {
+    favoritesStore.removeSong(song.id);
+  } else {
+    favoritesStore.addSong(song);
+  }
+};
+
+// Verifica si una canción está en favoritos
+const isFavorite = (songId) => {
+  return favoritesStore.isFavorite(songId);
 };
 </script>
 
@@ -59,10 +80,28 @@ body {
 }
 
 
+/* Botón de favorito */
+.favorite-btn {
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  color: #ffffff; /* Color verde estilo Spotify */
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Cambio de color cuando está en favoritos */
+.favorite-btn .bi-heart-fill {
+  color: red;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.2);
+}
 
 /* Estilo del título */
 h1 {
-  color: #1db954;
+  color: #ffffff;
   /* Verde Spotify */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -112,8 +151,8 @@ h1 {
 #titulo {
   color: #000000;
   font-weight: 700;
-  font-style: italic;
   transition: letter-spacing 0.3s ease-in-out; /* Para animación suave */
+  font-size: 20px;
 }
 
 #titulo:hover{

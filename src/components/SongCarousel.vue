@@ -37,7 +37,7 @@ const canciones = ref([]);
 // Función para obtener datos de Deezer
 const fetchDeezerChart = async () => {
   try {
-    const response = await fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart');
+    const response = await fetch('  http://localhost:8080/https://api.deezer.com/chart');
     const data = await response.json();
     canciones.value = data.tracks.data; // Guardamos las canciones
   } catch (error) {
