@@ -1,19 +1,19 @@
 <template>
-  <div id="carouselExampleIndicators" class="carousel slide d-block w-75 mx-auto shadow-lg rounded overflow-hidden" data-bs-ride="carousel">
+  <div id="carouselExampleIndicators" class="carousel slide d-block w-100 shadow-lg rounded overflow-hidden" data-bs-ride="carousel">
     <div class="carousel-inner">
       <!-- Iteramos las canciones para mostrarlas en el carrusel -->
       <div v-for="(cancion, index) in canciones" :key="index" :class="['carousel-item', { active: index === 0 }]">
         <!-- Imagen del álbum -->
         <img 
           :src="cancion.album.cover_big" 
-          class="d-block w-100 img-fluid" 
+          class="d-block" 
           :alt="cancion.title" 
-          style="object-fit: cover; height: 500px; filter: brightness(80%);"
+          style="object-fit: cover; width: 100%; height: 100vh; filter: brightness(80%);"
         />
         <!-- Información de la canción -->
         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-          <h5 class="bg-dark bg-opacity-75 px-3 py-2 rounded text-white">{{ cancion.title }}</h5>
-          <p class="bg-secondary bg-opacity-50 px-2 py-1 rounded text-white">Artista: {{ cancion.artist.name }}</p>
+          <h5 class="bg-dark bg-opacity-75 px-4 py-3 rounded text-white">{{ cancion.title }}</h5>
+          <p class="bg-secondary bg-opacity-50 px-3 py-2 rounded text-white">Artista: {{ cancion.artist.name }}</p>
         </div>
       </div>
     </div>
@@ -37,7 +37,7 @@ const canciones = ref([]);
 // Función para obtener datos de Deezer
 const fetchDeezerChart = async () => {
   try {
-    const response = await fetch('  http://localhost:8080/https://api.deezer.com/chart');
+    const response = await fetch('http://localhost:8080/https://api.deezer.com/chart');
     const data = await response.json();
     canciones.value = data.tracks.data; // Guardamos las canciones
   } catch (error) {
@@ -51,8 +51,9 @@ onMounted(fetchDeezerChart);
 
 <style scoped>
 .carousel {
-  margin-top: 30px; /* Espaciado superior */
   border-radius: 15px; /* Bordes redondeados */
+  width: 100%; /* Asegura que el carrusel ocupe todo el ancho disponible */
+  overflow: hidden; /* Evita el desbordamiento horizontal */
 }
 
 .carousel-inner img {
@@ -61,38 +62,41 @@ onMounted(fetchDeezerChart);
 }
 
 .carousel-caption h5 {
-  font-size: 1.5rem; /* Tamaño más grande para el título */
+  font-size: 2rem; /* Tamaño más grande para el título */
   font-weight: bold; /* Texto en negrita */
+  padding: 10px 20px;
 }
 
 .carousel-caption p {
-  font-size: 1.1rem; /* Tamaño ajustado para el artista */
+  font-size: 1.3rem; /* Tamaño ajustado para el artista */
   margin-top: 0.5rem; /* Espaciado superior */
+  padding: 10px 20px;
 }
 
+/* Agrandar controles */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para los controles */
   border-radius: 50%; /* Iconos redondeados */
-  padding: 10px; /* Tamaño del icono */
+  padding: 15px; /* Tamaño del icono aumentado */
 }
 
 .carousel-control-prev,
 .carousel-control-next {
-  width: 5%; /* Tamaño reducido de los controles */
+  width: 8%; /* Controles más grandes */
 }
 
 @media (max-width: 768px) {
   .carousel-inner img {
-    height: 300px; /* Ajuste de altura para dispositivos pequeños */
+    height: 400px; /* Ajuste de altura para dispositivos pequeños */
   }
 
   .carousel-caption h5 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 
   .carousel-caption p {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 </style>
