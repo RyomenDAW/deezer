@@ -23,16 +23,19 @@ import { RouterLink } from 'vue-router'
 
 <style lang="scss">
 /* Fijar el menú a la izquierda y hacerlo vertical */
+/* 3️⃣ - Menú lateral */
 nav {
-  height: 100vh; /* Altura completa */
-  background-color: #181818; /* Fondo oscuro */
-  padding-top: 60px; /* Espacio superior para no tapar el header */
-  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3); /* Sombra de profundidad */
+  width: 220px; 
+  background: linear-gradient(to right, #444343, #111111); /* Gradiente de gris oscuro a negro */
+  padding-top: 60px; 
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
   border-right: 2px solid rgb(0, 0, 0);
   display: flex;
   flex-direction: column;
-  z-index: 10; /* Asegura que el menú esté por encima de otros elementos */
+  flex-grow: 0; /* Expande el menú hasta el footer */
 }
+
+
 
 /* Estilo de la lista y los items */
 .navbar-nav {
@@ -47,13 +50,13 @@ nav {
 .nav-item .nav-link {
   color: white;
   text-decoration: none;
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.1s, color 0.1s;
   font-weight: 800;
-
+  border-radius: 10px;
 }
 
 .nav-item:hover .nav-link {
-  background-color: #3f6574;
+  background-color: #9f1fbe;
   font-weight: bold;
   color: white;
 }

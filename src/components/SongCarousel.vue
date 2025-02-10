@@ -1,3 +1,4 @@
+<!-- Aqui el main-content se hereda de App.vue -->
 <template>
   <div id="carouselExampleIndicators" class="carousel slide d-block w-100 shadow-lg rounded overflow-hidden" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -8,7 +9,7 @@
           :src="cancion.album.cover_big" 
           class="d-block" 
           :alt="cancion.title" 
-          style="object-fit: cover; width: 100%; height: 100vh; filter: brightness(80%);"
+          style="object-fit: cover; width: 100%; height: 60vh; filter: brightness(70%);"
         />
         <!-- Información de la canción -->
         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
@@ -49,7 +50,17 @@ const fetchDeezerChart = async () => {
 onMounted(fetchDeezerChart);
 </script>
 
+
+
+
+
 <style scoped>
+
+
+.body{
+  background-color: rebeccapurple;
+}
+
 .carousel {
   border-radius: 15px; /* Bordes redondeados */
   width: 100%; /* Asegura que el carrusel ocupe todo el ancho disponible */
@@ -59,6 +70,7 @@ onMounted(fetchDeezerChart);
 .carousel-inner img {
   border-radius: 15px; /* Bordes redondeados de las imágenes */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra */
+  opacity: 0.99; /* O reduce más si quieres que el fondo se note */
 }
 
 .carousel-caption h5 {

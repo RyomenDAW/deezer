@@ -1,14 +1,14 @@
 <template>
   <div>
-    <h1>🍍 Gestión de estados con Pinia</h1>
+    <!-- <h1>🍍 Gestión de estados con Pinia</h1>
     
-    <!-- Input para el email -->
+     Input para el email 
     <input v-model="email" type="email" placeholder="Introduce tu email" />
     <p>Tu email es: {{ email }}</p>
     <p>Dominio: {{ emailDomain }}</p>
     <button @click="clearEmail">Limpiar Email</button>
 
-    <hr />
+    <hr /> -->
 
     <!-- Mostrar favoritos -->
     <h2>🎵 Canciones Favoritas</h2>
