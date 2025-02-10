@@ -5,7 +5,7 @@
           type="text"
           v-model="searchQuery"
           @keyup.enter="searchDeezer"
-          placeholder="Buscar en Deezer"
+          placeholder="Search Song"
         />
         <button @click="searchDeezer">
           <i class="bi bi-search"></i> <!-- Ícono de búsqueda de Bootstrap -->

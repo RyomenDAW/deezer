@@ -39,8 +39,13 @@ const canciones = ref([]);
 const fetchDeezerChart = async () => {
   try {
     const response = await fetch('http://localhost:8080/https://api.deezer.com/chart');
+    
+    if (!response.ok) throw new Error('Error al obtener los datos');
+
     const data = await response.json();
-    canciones.value = data.tracks.data; // Guardamos las canciones
+    console.log('Respuesta de Deezer:', data); // Imprimir en consola los datos
+
+    canciones.value = data.tracks?.data || []; // Asegurar que no haya error si tracks es undefined
   } catch (error) {
     console.error('Error al obtener datos de Deezer:', error);
   }

@@ -8,11 +8,13 @@ import SongCarousel from "./components/SongCarousel.vue";
 <template>
   <div id="app">
     <!-- Header -->
-    <header class="bg-dark bg-color text-white py-3" style="border-bottom: 2px solid black;">
+    <header class="text-white py-3"
+      style="border-bottom: 2px solid black; background: linear-gradient(to bottom, #1d1b1b, #181818);">
       <div class="container text-center">
-        <h1 class="spotify-font">DeezerX Cloud </h1>
+        <h1 class="spotify-font">DeezerX Cloud</h1>
       </div>
     </header>
+
 
     <!-- Layout Principal -->
     <div class="main-layout">
@@ -29,10 +31,11 @@ import SongCarousel from "./components/SongCarousel.vue";
 
     <!-- Main Content -->
 
-
+    <!-- Reproductor de Música (Colocado antes del footer) -->
+    <Player />
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
-      <p>&copy; 2025-2025 DeezerX Cloud. All Rights Reserved, Copyright.</p>
+      <p>&copy; 2024-2025 DeezerX Cloud. All Rights Reserved, Copyright.</p>
     </footer>
   </div>
 </template>
@@ -49,40 +52,46 @@ import SongCarousel from "./components/SongCarousel.vue";
   /* Full height of the viewport */
 }
 
-/* Aplicamos la fuente "Bebas Neue" al h1 */
 .spotify-font {
-  font-family: 'Bebas Neue', sans-serif;
-  /* Fuente de estilo musical */
-  font-weight: 900;
-  /* Ajustar el peso para que no esté tan grueso */
-  letter-spacing: 10px;
-  /* Aumentar el espaciado entre letras */
+  font-family: 'Orbitron', sans-serif; /* Fuente futurista */
+  font-weight: 900; /* Peso grueso para impacto */
+  letter-spacing: 12px; /* Aumento del espaciado para más impacto */
+  text-transform: uppercase; /* Letras en mayúsculas para mayor presencia */
 
   /* Texto blanco por defecto */
   color: #fff;
-  
-/* Sombra de texto para darle un efecto de borde luminoso */
-text-shadow:
-  0px 0px 2px rgba(155, 77, 150, 0.7), /* Sombra fina en los bordes */
-  0px 0px 5px rgba(155, 77, 150, 0.7), /* Bordes brillantes */
-  0px 0px 8px rgba(155, 77, 150, 0.9), /* Aumenta la intensidad de los bordes */
-  0px 0px 15px rgba(155, 77, 150, 1);  /* Resplandor fuerte y definido */
 
-/* Animación suave para el hover */
-transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+  /* Sombra de texto mejorada para un resplandor más futurista */
+  text-shadow:
+    0px 0px 3px rgba(155, 77, 150, 0.8),  /* Sombra fina */
+    0px 0px 7px rgba(155, 77, 150, 0.9),  /* Bordes brillantes */
+    0px 0px 12px rgba(155, 77, 150, 1),   /* Mayor intensidad */
+    0px 0px 20px rgba(155, 77, 150, 1);   /* Efecto de neón fuerte */
+
+  /* Animación suave para efectos al pasar el mouse */
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 .spotify-font:hover {
   /* Efecto de resplandor y animación */
-  transform: scale(1.1); /* Aumenta un poco el tamaño al hacer hover */
-  color: #ffffff; /* Texto blanco */
+  transform: scale(1.1);
+  /* Aumenta un poco el tamaño al hacer hover */
+  color: #ffffff;
+  /* Texto blanco */
 
   /* Efecto de resplandor más fuerte en los bordes */
   text-shadow:
-    0px 0px 5px rgba(155, 77, 150, 1),  /* Bordes más definidos */
-    0px 0px 10px rgba(155, 77, 150, 0.9), /* Resplandor brillante */
-    0px 0px 20px rgba(155, 77, 150, 0.8), /* Aumenta la intensidad del brillo */
-    0px 0px 30px rgba(155, 77, 150, 1);  /* Resplandor máximo y más brillante */
+    0px 0px 5px rgba(155, 77, 150, 1),
+    /* Bordes más definidos */
+    0px 0px 10px rgba(155, 77, 150, 0.9),
+    /* Resplandor brillante */
+    0px 0px 20px rgba(155, 77, 150, 0.8),
+    /* Aumenta la intensidad del brillo */
+    0px 0px 30px rgba(155, 77, 150, 1);
+  /* Resplandor máximo y más brillante */
 }
 
 
@@ -93,13 +102,29 @@ main {
   /* Optional: space at the bottom of main content */
 }
 
+/* Importamos la fuente futurista */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
 footer {
   margin-top: auto;
-  /* Push the footer to the bottom of the page */
-  background: linear-gradient(to right, #1d1b1b, #181818); /* El mismo gradiente horizontal */
-  color: white; /* Asegura que el texto sea visible sobre el fondo oscuro */
-  padding: 20px 0; /* Ajusta el padding para que tenga un buen espacio */
-  text-align: center; /* Centra el contenido */
+  /* Push the footer to la parte inferior de la página */
+  background: linear-gradient(to right, #1d1b1b, #181818);
+  /* El mismo gradiente horizontal */
+  color: white;
+  /* Asegura que el texto sea visible sobre el fondo oscuro */
+  padding: 20px 0;
+  /* Ajusta el padding para que tenga un buen espacio */
+  text-align: center;
+  /* Centra el contenido */
+  font-family: "Orbitron", sans-serif;
+  /* Aplica la fuente futurista */
+  letter-spacing: 2px;
+  /* Aumenta el espaciado entre letras */
+  text-transform: uppercase;
+  /* Hace que el texto se vea más futurista en mayúsculas */
+  text-shadow: 0px 0px 10px rgba(128, 0, 255, 0.6);
+  /* Efecto de brillo para más impacto visual */
+  border: 1px solid black;
 }
 
 nav {
@@ -119,7 +144,8 @@ li {
     background-color: $hover-bg-color;
     color: $hover-text-color;
     font-weight: bold;
-    border-radius: $hover-border-radius; /* Usamos la variable para redondear el borde */
+    border-radius: $hover-border-radius;
+    /* Usamos la variable para redondear el borde */
   }
 }
 
@@ -130,20 +156,31 @@ li {
 
 
 .main-layout {
-  display: flex;          /* Flexbox para alinear horizontalmente */
-  flex: 1;                /* Ocupar el espacio disponible */
-  min-height: calc(100vh - 60px); /* Altura completa menos el header/footer */
+  display: flex;
+  /* Flexbox para alinear horizontalmente */
+  flex: 1;
+  /* Ocupar el espacio disponible */
+  min-height: calc(100vh - 60px);
+  /* Altura completa menos el header/footer */
 }
 
 .main-content {
-  flex: 1;                /* El contenido ocupa el resto del espacio */
+  flex: 1;
+  /* El contenido ocupa el resto del espacio */
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center;     /* Centra verticalmente */
+  justify-content: center;
+  /* Centra horizontalmente */
+  align-items: center;
+  /* Centra verticalmente */
   padding: 1px;
-  overflow-y: auto;        /* Scroll si hay mucho contenido */
-  background-color: rgb(255, 255, 255);
+  overflow-y: auto;
+  /* Scroll si hay mucho contenido */
+  background-color: rgba(0, 0, 0, 0.894);
+}
+
+.main-content {
+  background: linear-gradient(to right, #1d1b1b, #181818);
+
 }
 
 </style>
-

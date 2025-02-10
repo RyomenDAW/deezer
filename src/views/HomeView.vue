@@ -33,8 +33,9 @@ import SongCarousel from "@/components/SongCarousel.vue";
   background-size: cover; /* La imagen de fondo ocupa todo el espacio */
   background-position: center; /* Asegura que la imagen se centre */
   filter: brightness(0.9); /* Hace que la imagen de fondo se vea más tenue */
-  border: 5px solid transparent; /* Contorno transparente inicialmente */
+  border: 6px solid transparent; /* Contorno transparente inicialmente */
   animation: borderPulse 1s ease-in-out infinite; /* Pulso del borde cada 2 segundos */
+
 }
 
 /* Animación del pulso del borde */

@@ -1,6 +1,6 @@
 <template>
   <div class="p-4">
-    <h1 class="text-3xl font-bold mb-4 text-center">Búsqueda de canciones en Deezer</h1>
+    <h1 class="text-3xl font-bold mb-4 text-center">Search for some songs in Deezer</h1>
     <!-- Componente hijo -->
     <SearchBar @results="handleResults" />
     
@@ -71,6 +71,8 @@ const isFavorite = (songId) => {
 <style>
 /* Estilo adicional para mejorar el diseño */
 /* Estilo general de la página */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: #121212;
@@ -99,11 +101,17 @@ body {
   transform: scale(1.2);
 }
 
-/* Estilo del título */
+
+/* Estilo del título con Orbitron */
 h1 {
-  color: #ffffff;
-  /* Verde Spotify */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-family: 'Orbitron', sans-serif; /* Aplicar la fuente */
+  font-size: 2rem; /* Tamaño más grande */
+  letter-spacing: 4px; /* Espaciado entre letras */
+  color: #ffffff; /* Blanco para destacar */
+  text-shadow: 0px 0px 8px rgba(128, 0, 255, 0.7); /* Brillo futurista */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  margin-bottom: 1rem; /* Espaciado inferior */
+  text-align: center; /* Centrar el texto */
 }
 
 /* Contenedor principal de la playlist */
@@ -202,6 +210,10 @@ img:hover {
 
 .row > div:last-child {
   border-right: none; /* Elimina el borde de la última columna */
+}
+
+.main-content {
+  background: linear-gradient(to right, #1d1b1b,rgb(66, 16, 68));
 }
 
 </style>
