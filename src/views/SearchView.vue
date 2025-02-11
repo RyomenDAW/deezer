@@ -1,19 +1,34 @@
 <template>
   <div class="p-4">
     <h1 class="text-3xl font-bold mb-4 text-center">Search for some songs in Deezer</h1>
-    <!-- Componente hijo -->
     <SearchBar @results="handleResults" />
     
-    <!-- Lista de canciones -->
     <div class="mt-6 space-y-2">
       <div id="playlist" v-for="song in songs" :key="song.id"
         class="bg-white rounded-lg shadow-md p-4 flex items-center justify-between hover:shadow-lg transition-shadow duration-200">
         
-        <!-- Información de la canción -->
         <div class="row items-center truncate">
-          <div class="col-3" id="titulo">{{ song.title }}</div>
-          <div class="col-2" id="artista">{{ song.artist.name }}</div>
-          <div class="col-2" id="tituloalbum">{{ song.album.title }}</div>
+          <!-- 🎵 Redirige a la vista de la canción -->
+          <div class="col-3" id="titulo">
+            <router-link :to="`/details/song/${song.id}`" class="song-link">
+              {{ song.title }}
+            </router-link>
+          </div>
+
+          <!-- 🎤 Redirige a la vista del artista -->
+          <div class="col-2" id="artista">
+            <router-link :to="`/details/artist/${song.artist.id}`" class="artist-link">
+              {{ song.artist.name }}
+            </router-link>
+          </div>
+
+          <!-- 💿 Redirige a la vista del álbum -->
+          <div class="col-2" id="tituloalbum">
+            <router-link :to="`/details/album/${song.album.id}`" class="album-link">
+              {{ song.album.title }}
+            </router-link>
+          </div>
+
           <div class="col-2" id="duracion">{{ song.formattedDuration }}</div>
           <div class="col-2">
             <img :src="song.album.cover" :alt="`Carátula del álbum ${song.album.title}`"
@@ -21,7 +36,6 @@
           </div>
         </div>
 
-        <!-- Botón de favorito -->
         <button class="btn btn-outline-success favorite-btn" @click="toggleFavorite(song)">
           <i :class="isFavorite(song.id) ? 'bi bi-heart-fill' : 'bi bi-heart'"></i>
         </button>
@@ -35,17 +49,15 @@ import { ref } from "vue";
 import { useFavoritesStore } from "../stores/favorites";
 import SearchBar from "../components/SearchBar.vue";
 
-const songs = ref([]); // Estado para almacenar la lista de canciones
-const favoritesStore = useFavoritesStore(); // Accedemos a la store de favoritos
+const songs = ref([]); 
+const favoritesStore = useFavoritesStore();
 
-// Función para formatear la duración en minutos y segundos
 const formatDuration = (duration) => {
   const minutes = Math.floor(duration / 60);
   const seconds = duration % 60;
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 };
 
-// Maneja los resultados emitidos por el componente hijo
 const handleResults = (data) => {
   songs.value = data.map((song) => ({
     ...song,
@@ -53,7 +65,6 @@ const handleResults = (data) => {
   }));
 };
 
-// Agregar o eliminar de favoritos
 const toggleFavorite = (song) => {
   if (isFavorite(song.id)) {
     favoritesStore.removeSong(song.id);
@@ -62,7 +73,6 @@ const toggleFavorite = (song) => {
   }
 };
 
-// Verifica si una canción está en favoritos
 const isFavorite = (songId) => {
   return favoritesStore.isFavorite(songId);
 };
@@ -72,6 +82,35 @@ const isFavorite = (songId) => {
 /* Estilo adicional para mejorar el diseño */
 /* Estilo general de la página */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+
+/* 🎨 Estiliza los enlaces */
+.song-link, .artist-link, .album-link {
+  color: #c400ff; /* Morado futurista */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.song-link:hover, .artist-link:hover, .album-link:hover {
+  color: #ff4081; /* Color rosado al pasar el mouse */
+}
+
+/* 🎵 Estilo general */
+#playlist {
+  background-color: #181818;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid black;
+  border-radius: 1px;
+}
+
+#playlist:hover {
+  background: #282828;
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -107,8 +146,8 @@ h1 {
   font-family: 'Orbitron', sans-serif; /* Aplicar la fuente */
   font-size: 2rem; /* Tamaño más grande */
   letter-spacing: 4px; /* Espaciado entre letras */
-  color: #ffffff; /* Blanco para destacar */
-  text-shadow: 0px 0px 8px rgba(128, 0, 255, 0.7); /* Brillo futurista */
+  color: #ececec !important; /* Forzar el color */
+    text-shadow: 0px 0px 8px rgba(128, 0, 255, 0.7); /* Brillo futurista */
   text-transform: uppercase; /* Texto en mayúsculas */
   margin-bottom: 1rem; /* Espaciado inferior */
   text-align: center; /* Centrar el texto */
@@ -116,7 +155,7 @@ h1 {
 
 /* Contenedor principal de la playlist */
 #playlist {
-  background-color: #181818;
+  background-color: #000000;
   /* Fondo oscuro para cada canción */
   padding: 15px;
   margin-bottom: 10px;

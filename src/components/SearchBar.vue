@@ -47,7 +47,7 @@
     max-width: 600px; /* Opcional: limitar el ancho máximo */
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
+    border: 1px solid #4d4646;
     border-radius: 5px;
     background-color: #fff;
     padding: 0;
