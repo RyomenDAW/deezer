@@ -9,7 +9,7 @@ import SongCarousel from "./components/SongCarousel.vue";
   <div id="app">
     <!-- Header -->
     <header class="text-white py-3"
-      style="border-bottom: 2px solid black; background: linear-gradient(to bottom, #1d1b1b, #181818);">
+      style="border-bottom: 2px solid rgb(117, 111, 111); background: linear-gradient(to bottom, #1d1b1b, #181818);">
       <div class="container text-center">
         <h1 class="spotify-font">DeezerX Cloud</h1>
       </div>
@@ -124,12 +124,10 @@ footer {
   /* Hace que el texto se vea más futurista en mayúsculas */
   text-shadow: 0px 0px 10px rgba(128, 0, 255, 0.6);
   /* Efecto de brillo para más impacto visual */
-  border: 1px solid black;
+  border: 1px solid  rgb(117, 111, 111);
 }
 
-nav {
-  // border: 1px solid gray;
-}
+
 
 $hover-bg-color: #9f1fbe;
 $hover-text-color: #ffffff;

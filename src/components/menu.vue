@@ -31,7 +31,7 @@ nav {
   background: linear-gradient(to right, #444343, #111111); /* Gradiente de gris oscuro a negro */
   padding-top: 60px;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
-  border-right: 2px solid rgb(0, 0, 0);
+  border-right: 2px solid rgb(117, 111, 111);
   display: flex;
   flex-direction: column;
   flex-grow: 0;

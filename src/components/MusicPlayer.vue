@@ -1,6 +1,6 @@
 <template>
   <div class="player">
-    <h2>Reproductor de Música</h2>
+    <h2>Music Player</h2>
 
     <!-- Controles del reproductor con imágenes -->
     <div class="player-controls">
