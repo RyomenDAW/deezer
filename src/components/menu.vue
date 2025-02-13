@@ -11,67 +11,85 @@
         <router-link class="nav-link" to="/search">Search Songs 🔎</router-link>
       </li>
     </ul>
+
+    <!-- =============================== -->
+    <!-- 👤 USUARIO Y AVATAR -->
+    <div class="user-info" v-if="user">
+      <img :src="user.avatar" alt="User Avatar" class="avatar" />
+      <span class="username">{{ user.name }}</span>
+      <button @click="logout" class="logout-btn">Logout</button>
+    </div>
   </nav>
+
+  <!-- =============================== -->
+  <!-- 🚀 MODAL DE BIENVENIDA -->
+  <WelcomeModal v-if="!user" @user-set="setUser" />
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
+import { ref, onMounted } from "vue";
+import { RouterLink } from "vue-router";
+import WelcomeModal from "@/components/WelcomeModal.vue";
+
+// ===============================
+// 👤 GESTIÓN DEL USUARIO
+const user = ref(null);
+
+// ✅ Cargar usuario al montar
+onMounted(() => {
+  const savedUser = localStorage.getItem("user");
+  if (savedUser) {
+    user.value = JSON.parse(savedUser);
+  }
+});
+
+// ✅ Guardar usuario desde el modal
+const setUser = (newUser) => {
+  user.value = newUser;
+  localStorage.setItem("user", JSON.stringify(newUser));
+};
+
+// ✅ Cerrar sesión
+const logout = () => {
+  localStorage.removeItem("user");
+  user.value = null;
+};
 </script>
 
 <style lang="scss">
-/* Importamos la fuente futurista */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
-/* Estilos generales del menú */
-nav {
-  width: 220px;
-  background: linear-gradient(to right, #444343, #111111); /* Gradiente de gris oscuro a negro */
-  padding-top: 60px;
-  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
-  border-right: 2px solid rgb(117, 111, 111);
+/* =============================== */
+/* 👤 USUARIO */
+.user-info {
   display: flex;
-  flex-direction: column;
-  flex-grow: 0;
-  font-family: "Orbitron", sans-serif; /* Aplicar fuente futurista */
-  letter-spacing: 2px; /* Espaciado entre letras */
-}
-
-/* Estilo de la lista y los items */
-.navbar-nav {
-  list-style: none;
-  padding: 0;
-}
-
-.nav-item {
-  padding: 1rem;
-}
-
-.nav-item .nav-link {
-  color: white;
-  text-decoration: none;
-  transition: background-color 0.1s, color 0.1s;
-  font-weight: 800;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  letter-spacing: 2px; /* Aumentar espaciado en los enlaces */
 }
 
-.nav-item:hover .nav-link {
-  background-color: #9f1fbe;
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.username {
   font-weight: bold;
-  color: white;
-  text-shadow: 0px 0px 10px rgba(128, 0, 255, 0.8); /* Efecto de brillo al pasar el mouse */
+  font-size: 1.2rem;
 }
 
-.nav-link {
-  display: block;
-  padding: 0.5rem 1rem;
-  text-transform: uppercase; /* Poner texto en mayúsculas para más impacto */
-}
-
-/* Active state */
-.router-link-active {
+.logout-btn {
+  background: none;
+  border: none;
+  color: #ff4b4b;
   font-weight: bold;
-  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
 }
 
+.logout-btn:hover {
+  color: red;
+}
 </style>
