@@ -5,13 +5,10 @@
         <router-link class="nav-link" to="/">Home 🏠</router-link>
       </li>
       <li class="nav-item">
-        <router-link class="nav-link" to="/playlists">Playlists 🎧 </router-link>
+        <router-link class="nav-link" to="/playlist">Playlists 🎧 </router-link>
       </li>
       <li class="nav-item">
         <router-link class="nav-link" to="/search">Search Songs 🔎</router-link>
-      </li>
-      <li class="nav-item">
-        <router-link class="nav-link" to="/search2">Buscador 2 (TBD)</router-link>
       </li>
     </ul>
   </nav>

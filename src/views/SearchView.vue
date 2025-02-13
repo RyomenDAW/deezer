@@ -1,42 +1,38 @@
 <template>
-  <div class="p-4">
-    <h1 class="text-3xl font-bold mb-4 text-center">Search for some songs in Deezer</h1>
+  <div class="search-container">
+    <h1 class="title">SEARCH FOR SOME SONGS IN DEEZER</h1>
+
+    <!-- Barra de búsqueda -->
     <SearchBar @results="handleResults" />
-    
-    <div class="mt-6 space-y-2">
-      <div id="playlist" v-for="song in songs" :key="song.id"
-        class="bg-white rounded-lg shadow-md p-4 flex items-center justify-between hover:shadow-lg transition-shadow duration-200">
+
+    <!-- Resultados de búsqueda -->
+    <div class="song-list">
+      <div v-for="song in songs" :key="song.id" class="song-card">
         
-        <div class="row items-center truncate">
-          <!-- 🎵 Redirige a la vista de la canción -->
-          <div class="col-3" id="titulo">
-            <router-link :to="`/details/song/${song.id}`" class="song-link">
-              {{ song.title }}
-            </router-link>
-          </div>
+        <!-- 🎵 Información de la canción -->
+        <div class="song-info">
+          <router-link :to="`/details/song/${song.id}`" class="song-title">
+           Title: {{ song.title }}
+          </router-link>
 
-          <!-- 🎤 Redirige a la vista del artista -->
-          <div class="col-2" id="artista">
-            <router-link :to="`/details/artist/${song.artist.id}`" class="artist-link">
-              {{ song.artist.name }}
-            </router-link>
-          </div>
+          <router-link :to="`/details/artist/${song.artist.id}`" class="song-artist">
+           Artist: {{ song.artist.name }}
+          </router-link>
 
-          <!-- 💿 Redirige a la vista del álbum -->
-          <div class="col-2" id="tituloalbum">
-            <router-link :to="`/details/album/${song.album.id}`" class="album-link">
-              {{ song.album.title }}
-            </router-link>
-          </div>
+          <router-link :to="`/details/album/${song.album.id}`" class="song-album">
+            Album: {{ song.album.title }}
+          </router-link>
 
-          <div class="col-2" id="duracion">{{ song.formattedDuration }}</div>
-          <div class="col-2">
-            <img :src="song.album.cover" :alt="`Carátula del álbum ${song.album.title}`"
-              class="w-16 h-16 rounded-lg object-cover ml-4 flex-shrink-0" />
-          </div>
+          <p class="song-duration">{{ song.formattedDuration }}</p>
         </div>
 
-        <button class="btn btn-outline-success favorite-btn" @click="toggleFavorite(song)">
+        <!-- 💿 Imagen del álbum -->
+        <div class="album-cover">
+          <img :src="song.album.cover" :alt="`Carátula del álbum ${song.album.title}`" />
+        </div>
+
+        <!-- ❤️ Botón de favorito -->
+        <button class="favorite-btn" @click="toggleFavorite(song)">
           <i :class="isFavorite(song.id) ? 'bi bi-heart-fill' : 'bi bi-heart'"></i>
         </button>
       </div>
@@ -49,15 +45,17 @@ import { ref } from "vue";
 import { useFavoritesStore } from "../stores/favorites";
 import SearchBar from "../components/SearchBar.vue";
 
-const songs = ref([]); 
+const songs = ref([]);
 const favoritesStore = useFavoritesStore();
 
+// **Formatear duración de la canción**
 const formatDuration = (duration) => {
   const minutes = Math.floor(duration / 60);
   const seconds = duration % 60;
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 };
 
+// **Manejar los resultados de la búsqueda**
 const handleResults = (data) => {
   songs.value = data.map((song) => ({
     ...song,
@@ -65,6 +63,7 @@ const handleResults = (data) => {
   }));
 };
 
+// **Añadir/Quitar de favoritos**
 const toggleFavorite = (song) => {
   if (isFavorite(song.id)) {
     favoritesStore.removeSong(song.id);
@@ -73,65 +72,125 @@ const toggleFavorite = (song) => {
   }
 };
 
+// **Verificar si una canción está en favoritos**
 const isFavorite = (songId) => {
   return favoritesStore.isFavorite(songId);
 };
 </script>
 
-<style>
-/* Estilo adicional para mejorar el diseño */
-/* Estilo general de la página */
+<style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
+/* 🔹 Estilos generales */
+.search-container {
+  color: white;
+  padding: 30px;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+}
 
-/* 🎨 Estiliza los enlaces */
-.song-link, .artist-link, .album-link {
-  color: #c400ff; /* Morado futurista */
+/* 🔥 Estilo del título */
+.title {
+  font-size: 2rem;
+  letter-spacing: 3px;
+  text-shadow: 0px 0px 10px rgba(128, 0, 255, 0.8);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+/* 🎶 Contenedor de canciones */
+.song-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* 🎵 Tarjeta de cada canción */
+.song-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #35004b, #4b0082); /* Gradiente aplicado a toda la tarjeta */
+  padding: 15px;
+  border-radius: 10px;
+  transition: background 0.3s, transform 0.2s ease-in-out;
+  box-shadow: 0px 0px 15px rgba(128, 0, 255, 0.5);
+}
+
+.song-card:hover {
+  background: linear-gradient(to right, #4b0082, #5f00b7);
+  transform: scale(1.02);
+}
+
+/* 🎼 Información de la canción */
+.song-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+  flex: 1;
+}
+
+.song-title,
+.song-artist,
+.song-album {
+  font-size: 1.1rem;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
 }
 
-.song-link:hover, .artist-link:hover, .album-link:hover {
-  color: #ff4081; /* Color rosado al pasar el mouse */
+.song-title {
+  color: #f7286d;
 }
 
-/* 🎵 Estilo general */
-#playlist {
-  background-color: #181818;
-  padding: 15px;
-  margin-bottom: 10px;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid black;
-  border-radius: 1px;
+.song-artist {
+  color: #c400ff;
 }
 
-#playlist:hover {
-  background: #282828;
-  transform: scale(1.02);
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+.song-album {
+  color: #4db6ac;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #121212;
-  /* Fondo oscuro estilo Spotify */
-  color: #fff;
-  /* Texto blanco para mejor contraste */
+.song-title:hover,
+.song-artist:hover,
+.song-album:hover {
+  text-decoration: underline;
 }
 
+/* ⏱️ Duración de la canción */
+.song-duration {
+  font-size: 1rem;
+  color: #ddd;
+}
 
-/* Botón de favorito */
+/* 💿 Imagen del álbum */
+.album-cover img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+}
+
+.album-cover img:hover {
+  transform: scale(1.1);
+}
+
+/* ❤️ Botón de favoritos */
 .favorite-btn {
   font-size: 1.5rem;
   border: none;
   background: none;
-  color: #ffffff; /* Color verde estilo Spotify */
+  color: #ffffff;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
+  margin-left: 10%;
 }
 
-/* Cambio de color cuando está en favoritos */
 .favorite-btn .bi-heart-fill {
   color: red;
 }
@@ -139,120 +198,4 @@ body {
 .favorite-btn:hover {
   transform: scale(1.2);
 }
-
-
-/* Estilo del título con Orbitron */
-h1 {
-  font-family: 'Orbitron', sans-serif; /* Aplicar la fuente */
-  font-size: 2rem; /* Tamaño más grande */
-  letter-spacing: 4px; /* Espaciado entre letras */
-  color: #ececec !important; /* Forzar el color */
-    text-shadow: 0px 0px 8px rgba(128, 0, 255, 0.7); /* Brillo futurista */
-  text-transform: uppercase; /* Texto en mayúsculas */
-  margin-bottom: 1rem; /* Espaciado inferior */
-  text-align: center; /* Centrar el texto */
-}
-
-/* Contenedor principal de la playlist */
-#playlist {
-  background-color: #000000;
-  /* Fondo oscuro para cada canción */
-  padding: 15px;
-  margin-bottom: 10px;
-  transition: all 0.3s ease-in-out;
-  border: 1px solid black;
-  border-radius: 1px;
-}
-
-/* Efecto hover para cada canción */
-#playlist:hover {
-  background: #282828;
-  /* Un poco más claro al pasar el mouse */
-  transform: scale(1.02);
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
-}
-
-/* Alineación y espacio entre elementos */
-.row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-
-/* Columnas de la canción */
-#titulo,
-#artista,
-#tituloalbum,
-#duracion {
-  padding: 5px 10px;
-  font-size: 1rem;
-  font-weight: 500;
-  text-align: center;
-  font-style: italic;
-
-}
-
-/* Colores diferenciados */
-#titulo {
-  color: #000000;
-  font-weight: 700;
-  transition: letter-spacing 0.3s ease-in-out; /* Para animación suave */
-  font-size: 20px;
-}
-
-#titulo:hover{
-  letter-spacing: 1px;
-  color: #0d4624;
-  transition: 3s;
-}
-
-#artista {
-  color: #000000;
-}
-
-#tituloalbum {
-  color: #080808;
-}
-
-#duracion {
-  color: #080606;
-}
-
-/* Imagen del álbum */
-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 8px;
-  object-fit: cover;
-  transition: transform 0.2s ease-in-out;
-}
-
-/* Efecto al pasar el mouse sobre la imagen */
-img:hover {
-  transform: scale(1.1);
-}
-.row {
-  display: flex;
-  align-items: stretch; /* Hace que todas las columnas tengan la misma altura */
-}
-
-.row > div {
-  border-right: 2px solid rgba(0, 0, 0, 0.2); /* Bordes más visibles */
-  padding: 5px; /* Espacio interno */
-  display: flex;
-  align-items: center; /* Centra el contenido verticalmente */
-  justify-content: center; /* Centra horizontalmente */
-  flex: 1; /* Hace que cada columna ocupe su espacio proporcional */
-}
-
-.row > div:last-child {
-  border-right: none; /* Elimina el borde de la última columna */
-}
-
-.main-content {
-  background: linear-gradient(to right, #1d1b1b,rgb(66, 16, 68));
-}
-
 </style>

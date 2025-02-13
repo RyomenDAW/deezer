@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Menu from "./components/menu.vue";
-import Player from "./components/reproductor.vue"
+import Player from "./components/MusicPlayer.vue"
 import SongCarousel from "./components/SongCarousel.vue";
 </script>
 
@@ -50,6 +50,8 @@ import SongCarousel from "./components/SongCarousel.vue";
   flex-direction: column;
   height: 100%;
   /* Full height of the viewport */
+  background: linear-gradient(to right, #1d1b1b, rgb(66, 16, 68)) !important;
+
 }
 
 .spotify-font {
@@ -173,12 +175,10 @@ li {
   padding: 1px;
   overflow-y: auto;
   /* Scroll si hay mucho contenido */
-  background-color: rgba(0, 0, 0, 0.894);
-}
-
-.main-content {
-  background: linear-gradient(to right, #1d1b1b, #181818);
+  background: none; /* Evitar que sobreescriba el gradiente del body */
 
 }
+
+
 
 </style>
