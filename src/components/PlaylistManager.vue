@@ -2,7 +2,7 @@
     <div class="playlist-manager">
   
       <div v-if="!playlist || playlist.length === 0" class="empty-message">
-        No hay canciones en tu playlist, lo sentimos 😢
+        There is no songs available 😢
       </div>
   
       <ul class="playlist" @dragover.prevent @drop="drop">
@@ -63,16 +63,17 @@
   </script>
   
   <style scoped>
-  .playlist-manager {
-    background: linear-gradient(to right, #2a0730, #3a0d40);
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 0 20px rgba(128, 0, 255, 0.5);
-    width: 70%;
-    margin: 0 auto;
-    margin-top: 5%;
-  }
+.playlist-manager {
+  background: linear-gradient(200deg, #0f0e0e, #5d066d, #302077, #1342c2); /* 🔥 MÁS OSCURO Y ELECTRIFICANTE */  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(128, 0, 255, 0.5);
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
   
   .title {
     font-size: 1.8rem;
@@ -102,5 +103,6 @@
     transform: scale(1.05);
     cursor: grabbing;
   }
+
   </style>
   

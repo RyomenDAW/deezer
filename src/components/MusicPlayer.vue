@@ -143,16 +143,16 @@ onUnmounted(() => {
     <div class="player-controls">
       <button @click="previousTrack">
         <img src="https://cdn-icons-png.flaticon.com/512/26/26309.png" alt="Prev" class="icon" />
-        Anterior
+        Before
       </button>
       <button @click="togglePlay">
         <img v-if="state.isPlaying" src="https://cdn-icons-png.flaticon.com/128/786/786279.png" alt="Pause" class="icon" />
         <img v-else src="https://cdn-icons-png.flaticon.com/128/142/142457.png" alt="Play" class="icon" />
-        {{ state.isPlaying ? "Pausar" : "Reproducir" }}
+        {{ state.isPlaying ? "Pause" : "Play" }}
       </button>
       <button @click="nextTrack">
         <img src="https://cdn-icons-png.flaticon.com/128/3318/3318722.png" alt="Next" class="icon" />
-        Siguiente
+        Next
       </button>
     </div>
 
@@ -196,14 +196,16 @@ onUnmounted(() => {
 
 .player {
   width: 100%;
-  background: linear-gradient(to right, #1d1b1b, #181818);
+  background: linear-gradient(120deg, #100f1f, #28004d, #5a00b3, #9b00ff);
   padding: 2rem;
   text-align: center;
   color: rgb(255, 255, 255);
   font-family: "Orbitron", sans-serif;
-  box-shadow: 0 0 15px rgba(128, 0, 255, 0.6);
+  box-shadow: 0 0 20px rgba(128, 0, 255, 0.75);
   letter-spacing: 2px;
+  border-top: 2px solid rgb(117, 111, 111);
 }
+
 
 .player-controls {
   display: flex;

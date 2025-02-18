@@ -3,8 +3,8 @@
       <div class="song-info">
         <img :src="song?.album?.cover_small || 'https://via.placeholder.com/150'" class="cover" />
         <div>
-          <p class="song-title">{{ song?.title || "Título Desconocido" }}</p>
-          <p class="artist-name">{{ song?.artist?.name || "Artista Desconocido" }}</p>
+          <p class="song-title">{{ song?.title || "Unkwown Title" }}</p>
+          <p class="artist-name">{{ song?.artist?.name || "Unkwown Artist" }}</p>
         </div>
       </div>
       <button class="remove-btn" @click="$emit('remove')">❌</button>

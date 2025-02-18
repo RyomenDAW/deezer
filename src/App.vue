@@ -8,12 +8,12 @@ import SongCarousel from "./components/SongCarousel.vue";
 <template>
   <div id="app">
     <!-- Header -->
-    <header class="text-white py-3"
-      style="border-bottom: 2px solid rgb(117, 111, 111); background: linear-gradient(to bottom, #1d1b1b, #181818);">
+    <header class="text-white py-3 header-gradient">
       <div class="container text-center">
         <h1 class="spotify-font">DeezerX Cloud</h1>
       </div>
     </header>
+
 
 
     <!-- Layout Principal -->
@@ -34,9 +34,10 @@ import SongCarousel from "./components/SongCarousel.vue";
     <!-- Reproductor de Música (Colocado antes del footer) -->
     <Player />
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
+    <footer class="footer-gradient text-white text-center py-3">
       <p>&copy; 2024-2025 DeezerX Cloud. All Rights Reserved, Copyright.</p>
     </footer>
+
   </div>
 </template>
 
@@ -50,25 +51,39 @@ import SongCarousel from "./components/SongCarousel.vue";
   flex-direction: column;
   height: 100%;
   /* Full height of the viewport */
-  background: linear-gradient(to right, #1d1b1b, rgb(66, 16, 68)) !important;
+}
 
+/* =============================== */
+/* 🔥 GRADIENTE EN EL HEADER (DEEZERX CLOUD) */
+.header-gradient {
+  border-bottom: 2px solid rgb(117, 111, 111);
+  background: linear-gradient(105deg, #0f0e0e, #2e0036, #6c02b8, #7a00cc);
+  /* 🔥 MÁS OSCURO Y ELECTRIFICANTE */
 }
 
 .spotify-font {
-  font-family: 'Orbitron', sans-serif; /* Fuente futurista */
-  font-weight: 900; /* Peso grueso para impacto */
-  letter-spacing: 12px; /* Aumento del espaciado para más impacto */
-  text-transform: uppercase; /* Letras en mayúsculas para mayor presencia */
+  font-family: 'Orbitron', sans-serif;
+  /* Fuente futurista */
+  font-weight: 900;
+  /* Peso grueso para impacto */
+  letter-spacing: 12px;
+  /* Aumento del espaciado para más impacto */
+  text-transform: uppercase;
+  /* Letras en mayúsculas para mayor presencia */
 
   /* Texto blanco por defecto */
   color: #fff;
 
   /* Sombra de texto mejorada para un resplandor más futurista */
   text-shadow:
-    0px 0px 3px rgba(155, 77, 150, 0.8),  /* Sombra fina */
-    0px 0px 7px rgba(155, 77, 150, 0.9),  /* Bordes brillantes */
-    0px 0px 12px rgba(155, 77, 150, 1),   /* Mayor intensidad */
-    0px 0px 20px rgba(155, 77, 150, 1);   /* Efecto de neón fuerte */
+    0px 0px 3px rgba(155, 77, 150, 0.8),
+    /* Sombra fina */
+    0px 0px 7px rgba(155, 77, 150, 0.9),
+    /* Bordes brillantes */
+    0px 0px 12px rgba(155, 77, 150, 1),
+    /* Mayor intensidad */
+    0px 0px 20px rgba(155, 77, 150, 1);
+  /* Efecto de neón fuerte */
 
   /* Animación suave para efectos al pasar el mouse */
   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
@@ -126,8 +141,28 @@ footer {
   /* Hace que el texto se vea más futurista en mayúsculas */
   text-shadow: 0px 0px 10px rgba(128, 0, 255, 0.6);
   /* Efecto de brillo para más impacto visual */
-  border: 1px solid  rgb(117, 111, 111);
+  border: 1px solid rgb(117, 111, 111);
 }
+
+/* =============================== */
+/* 🔥 GRADIENTE EN EL HEADER Y FOOTER */
+.header-gradient, .footer-gradient {
+  border-bottom: 1px solid rgb(117, 111, 111);
+  background: linear-gradient(105deg, #3d3c3c, #161416, #110b16, #000000); /* 🔥 MÁS OSCURO Y ELECTRIFICANTE */
+}
+
+/* 🎵 FOOTER */
+.footer-gradient {
+  margin-top: auto;
+  padding: 25px 0; /* Un poco más de espacio */
+  font-size: 1.3rem; /* 🔥 Aumentamos el tamaño de fuente */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0px 0px 10px rgba(128, 0, 255, 0.6); /* Resplandor futurista */
+  border-top: 1px solid rgb(117, 111, 111);
+}
+
 
 
 
@@ -175,10 +210,6 @@ li {
   padding: 1px;
   overflow-y: auto;
   /* Scroll si hay mucho contenido */
-  background: none; /* Evitar que sobreescriba el gradiente del body */
-
-}
-
-
-
+  background: linear-gradient(100deg, #080707, #1a0020, #21053a,); /* 🔥 AÚN MÁS OSCURO Y ELECTRIFICANTE */
+    }
 </style>

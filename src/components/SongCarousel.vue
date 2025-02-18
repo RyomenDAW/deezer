@@ -65,11 +65,11 @@ onMounted(fetchDeezerChart);
 .body{
   background-color: rebeccapurple;
 }
-
 .carousel {
   border-radius: 15px; /* Bordes redondeados */
   width: 100%; /* Asegura que el carrusel ocupe todo el ancho disponible */
   overflow: hidden; /* Evita el desbordamiento horizontal */
+  background: linear-gradient(to right, #1d1b1b, #450c50); /* Fondo gradiente */
 }
 
 .carousel-inner img {
@@ -77,6 +77,7 @@ onMounted(fetchDeezerChart);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra */
   opacity: 0.99; /* O reduce más si quieres que el fondo se note */
 }
+
 
 .carousel-caption h5 {
   font-size: 2rem; /* Tamaño más grande para el título */

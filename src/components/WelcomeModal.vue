@@ -90,6 +90,8 @@
     border-radius: 10px;
     text-align: center;
     color: white;
+    font-family: "Orbitron", sans-serif;
+
   }
   
   /* 📝 INPUT NOMBRE */
@@ -135,6 +137,8 @@
     cursor: pointer;
     border-radius: 5px;
     transition: background 0.2s;
+    font-family: "Orbitron", sans-serif;
+    letter-spacing: 2px;
   }
   
   .save-btn:hover {
